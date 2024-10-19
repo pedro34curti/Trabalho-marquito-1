@@ -1,0 +1,29 @@
+###  Listar livros
+GET http://localhost:3333/livros
+
+###
+
+### Criar livro
+POST http://localhost:3333/livros
+Content-Type: application/json
+
+{
+    "titulo": "Terror",
+    "resumo": "Monstro mata"
+}
+
+###
+
+### Atualizar livro
+PUT http://localhost:3333/livros/70bd845b-03ed-44ef-ab71-70af255e7258
+Content-Type: application/json
+
+{
+    "titulo": "Sustos",
+    "resumo": "Matar todos no acampamento"
+}
+
+###
+
+### Deletar livro
+DELETE http://localhost:3333/livros/id

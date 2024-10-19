@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta titulo="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compras</title>
+</head>
+<body>
+    
+    <input type="text" titulo="" id="titulo" placeholder="titulo">
+    <input type="text" titulo="" id="resumo" placeholder="resumo">
+
+    <button onclick="criarlivros()">
+        Criar livro 
+    </button>
+
+    <p id="livros"></p>
+
+    <script>
+        async function pegarlivros(){
+            const resposta = await fetch('http://localhost:3333/livros', {
+                method: 'GET'
+            })
+        const livros = await resposta.json();
+        console.log(livros);
+
+        const elementoP = document.getElementById('livros');
+        elementoP.innerHTML = livros[0].titulo;
+    }
+
+    pegarLivros();
+
+    async function criarlivros(){
+        const titulo = document.getElementById('titulo').value;
+        const resumo = document.getElementById('resumo').value;
+        const genero = document.getElementById('genero').value;
+
+        const novolivro = {
+            "titulo": "Vampiro",
+            "resumo": "Vou chupar seu sangue"
+        }
+
+    const resposta = await fetch('POST http://localhost:3333/livros', {
+        method: 'POST',
+        headers: {
+                'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(novolivro)
+    });
+      criarLivros();
+}
+    </script>
+</body>
+</html>
